@@ -1,0 +1,17 @@
+body {
+  background-color: rgb(27, 27, 27); /* Black */
+}
+
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 70px); /* Adjusted for the height of the app bar */
+}
+
+.center-content {
+  display: flex;
+  background-color: #292929;
+  width: 750px;
+  height: 450px;
+}

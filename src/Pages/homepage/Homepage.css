@@ -1,0 +1,92 @@
+* {
+  margin: 0;
+}
+
+/* .body {
+  height: 100%;
+  background-color: rgb(0, 0, 0);
+} */
+/* Homepage.css */
+body {
+  background-color: rgb(27, 27, 27); /* Black */
+}
+
+.c1 .search {
+  margin-right: 10px;
+}
+
+.search {
+  border-radius: 5px;
+  width: 700px;
+  background-color: rgb(255, 255, 255);
+}
+
+.img {
+  width: 140px;
+  height: 220px;
+}
+
+.c2 {
+  display: grid;
+  justify-content: center;
+  margin-top: 40px;
+  grid-template-rows: repeat(2, 230px); /* ให้แสดงผลในแนวตั้ง 2 แถว */
+  grid-template-columns: repeat(5, 150px); /* ให้แสดงผลในแนวนอน 5 คอลัมน์ */
+  gap: 10px;
+}
+
+.movieC {
+  width: 140px;
+  height: 220px;
+  margin: 0px;
+  background-color: rgb(35, 35, 35);
+  border-radius: 5px;
+  color: white;
+}
+
+.title {
+  margin: 10px;
+}
+
+.grid-item {
+  position: relative;
+}
+
+.title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 8px;
+  margin: 0;
+  transition: opacity 0.3s;
+  opacity: 0;
+}
+
+.grid-item:hover .title {
+  opacity: 1;
+}
+
+.movieC {
+  transition: transform 1s ease; /* Smooth transition effect */
+}
+
+.movieC:hover {
+  transform: scale(1.1);
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 70px); /* Adjusted for the height of the app bar */
+  color: white;
+  pointer-events: none; /* Disable all pointer events */
+  user-select: none;
+}
+
+.no-interaction {
+  /* Disable text selection */
+}
