@@ -10,6 +10,7 @@ function HomePage() {
   const movieservice = new MovieService();
   const inputName = useRef<HTMLInputElement>();
   const [data, setData] = useState<MovieGetResponse[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
 
   return (
     <>
@@ -36,15 +37,16 @@ function HomePage() {
               size="small"
               onKeyDown={(e) => {
                 if (e.key === "Enter" && inputName.current) {
-                  btnClick(inputName.current.value);
+                  btnClick(inputName.current.value, currentPage);
                 }
               }}
-            ></TextField>
+            />
             <Button
               variant="contained"
+              color="success"
               onClick={async () => {
                 if (inputName.current) {
-                  btnClick(inputName.current.value);
+                  btnClick(inputName.current.value, currentPage);
                 }
               }}
             >
@@ -74,19 +76,72 @@ function HomePage() {
             ))}
           </div>
         )}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            // alignItems: "center",
+            marginTop: "20px",
+            // backgroundColor: "red",
+          }}
+        >
+          <Button
+            size="large"
+            variant="contained"
+            onClick={() => handlePageChange(currentPage - 1)}
+          >
+            Previous
+          </Button>
+          <TextField
+            id="filled-basic"
+            label="Filled"
+            variant="filled"
+            className="page-input"
+            color="warning"
+            value={currentPage}
+            onChange={(e) => {
+              const newValue =
+                e.target.value.trim() == "" && parseInt(e.target.value) == 0
+                  ? parseInt(e.target.value)
+                  : currentPage;
+              handlePageChange(newValue);
+            }}
+            style={{
+              width: "70px",
+              fontSize: "12px",
+              backgroundColor: "white",
+              borderRadius: "5px",
+              marginLeft: "10px",
+              marginRight: "10px",
+            }}
+          />
+
+          <Button
+            size="large"
+            variant="contained"
+            onClick={() => handlePageChange(currentPage + 1)}
+          >
+            Next
+          </Button>
+        </div>
       </div>
     </>
   );
 
-  async function btnClick(inputname: string) {
-    const res = await movieservice.getMovieByname(inputname);
-
-    console.log(res);
+  async function btnClick(inputname: string, page: number) {
+    const res = await movieservice.getMovieByname(inputname, page);
     setData(res);
+    setCurrentPage(page);
+  }
 
-    // const res2 = await movieservice.getById(inputname);
-    // setData(res2);
-    // console.log("Out");
+  function handlePageChange(page: number) {
+    btnClick(inputName.current.value, page);
+    if (page <= 0) {
+      btnClick(inputName.current.value, 1);
+    }
+    if (page === null || page === undefined) {
+      btnClick(inputName.current.value, 1);
+    }
   }
 }
 

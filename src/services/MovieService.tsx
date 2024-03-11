@@ -11,8 +11,8 @@ export class MovieService {
   static getMovieById(inputname: string) {
     throw new Error("Method not implemented.");
   }
-  async getMovieByname(name: string) {
-    const url = HOST + `/?apikey=${apiKey}&s=${name}`;
+  async getMovieByname(name: string, page: number) {
+    const url = HOST + `/?apikey=${apiKey}&s=${name}&page=${page}`;
     const response = await axios.get(url);
     if (!response.data.Search) {
       return [];
