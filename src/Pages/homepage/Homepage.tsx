@@ -99,13 +99,7 @@ function HomePage() {
             className="page-input"
             color="warning"
             value={currentPage}
-            onChange={(e) => {
-              const newValue =
-                e.target.value.trim() == "" && parseInt(e.target.value) == 0
-                  ? parseInt(e.target.value)
-                  : currentPage;
-              handlePageChange(newValue);
-            }}
+            onChange={(e) => handlePageChange(parseInt(e.target.value))}
             style={{
               width: "70px",
               fontSize: "12px",
@@ -131,16 +125,17 @@ function HomePage() {
   async function btnClick(inputname: string, page: number) {
     const res = await movieservice.getMovieByname(inputname, page);
     setData(res);
+    console.log(res);
+    if (res.length == 1) {
+      const getByIdRes = await movieservice.getById(inputname);
+      setData(getByIdRes);
+    }
     setCurrentPage(page);
   }
 
   function handlePageChange(page: number) {
-    btnClick(inputName.current.value, page);
-    if (page <= 0) {
-      btnClick(inputName.current.value, 1);
-    }
-    if (page === null || page === undefined) {
-      btnClick(inputName.current.value, 1);
+    if (page > 0) {
+      btnClick(inputName.current.value, page);
     }
   }
 }
