@@ -126,7 +126,7 @@ function HomePage() {
     const res = await movieservice.getMovieByname(inputname, page);
     setData(res);
     console.log(res);
-    if (res.length == 1) {
+    if (res.length == 0) {
       const getByIdRes = await movieservice.getById(inputname);
       setData(getByIdRes);
     }
