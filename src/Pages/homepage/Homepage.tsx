@@ -123,13 +123,13 @@ function HomePage() {
   );
 
   async function btnClick(inputname: string, page: number) {
-    const res = await movieservice.getMovieByname(inputname, page);
+    const res = await movieservice.getMovieByname(inputname);
     setData(res);
     console.log(res);
-    if (res.length == 0) {
-      const getByIdRes = await movieservice.getById(inputname);
-      setData(getByIdRes);
-    }
+    // if (res.length == 0) {
+    //   const getByIdRes = await movieservice.getById(inputname);
+    //   setData(getByIdRes);
+    // }
     setCurrentPage(page);
   }
 
