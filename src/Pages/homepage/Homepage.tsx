@@ -123,7 +123,7 @@ function HomePage() {
   );
 
   async function btnClick(inputname: string, page: number) {
-    const res = await movieservice.getMovieByname(inputname);
+    const res = await movieservice.getMovieByname(inputname, page);
     setData(res);
     console.log(res);
     // if (res.length == 0) {
